@@ -36,11 +36,9 @@ export function initSocket(server: HttpServer) {
           if (char.length === 0) return;
 
           const state = players.get(socket.id) || {};
-          const cooldownSeconds = Number(
-            process.env.GRID_COOLDOWN_SECONDS || 60
-          );
+          const cooldownSeconds = Number(60);
           const now = Date.now();
-          
+
           if (
             state.lastActionAt &&
             now - state.lastActionAt < cooldownSeconds * 1000
@@ -61,7 +59,7 @@ export function initSocket(server: HttpServer) {
           );
 
           players.set(socket.id, { lastActionAt: now });
-          
+
           io.emit("cell-updated", {
             row,
             col,

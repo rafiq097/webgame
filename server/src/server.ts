@@ -20,8 +20,8 @@ app.get("/api/grid", async (req, res) => {
 });
 
 app.get("/api/history", async (req, res) => {
-  const h = await getHistory(500);
-  res.json(h);
+  const history = await getHistory(500);
+  res.json(history);
 });
 
 const server = http.createServer(app);
